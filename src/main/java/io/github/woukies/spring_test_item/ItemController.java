@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/spring_test_item")
 public class ItemController {
-	ItemService command;
+	ItemService service;
 	
 	@RequestMapping("/itemWrite")
 	public String itemWrite() {
@@ -20,8 +20,8 @@ public class ItemController {
 	public String writeResult(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
-		command = new ItemWriteService();
-		command.execute(model);
+		service = new ItemWriteService();
+		service.execute(model);
 		return "/spring_test_item/writeResult";
 	}
 	
@@ -29,8 +29,8 @@ public class ItemController {
 	public String content_view(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
-		command = new ItemContentService();
-		command.execute(model);
+		service = new ItemContentService();
+		service.execute(model);
 		
 		return "/spring_test_item/content_view";
 	}
