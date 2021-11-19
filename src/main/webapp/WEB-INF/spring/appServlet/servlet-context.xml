@@ -36,5 +36,15 @@
 		<beans:property name="dataSource" ref="dataSource"/>
 	</beans:bean>
 	
+	<!-- Mybatis 설정 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="mapperLocations" value="classpath:io/github/woukies/*/dao/mapper/*.xml"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
+	</beans:bean>
+	
 	<context:component-scan base-package="io.github.woukies" />
 </beans:beans>
