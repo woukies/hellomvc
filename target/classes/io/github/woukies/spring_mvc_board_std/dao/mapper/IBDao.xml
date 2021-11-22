@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.github.woukies.spring_mvc_board_std.dao.IBDao">
+
+	<!-- id: 메소드 -->
+    <select id="list" resultType="io.github.woukies.spring_mvc_board_std.dto.BDto">
+        SELECT bid, bname, btitle, bcontent, bdate, bhit 
+        	FROM mvc_board ORDER BY bid DESC
+    </select>
+    
+    <select id="contentView" parameterType="hashmap" resultType="io.github.woukies.spring_mvc_board_std.dto.BDto">
+    	SELECT bid, bname, btitle, bcontent, bdate, bhit 
+    		FROM mvc_board WHERE bid = #{bid}
+    </select>
+    
+    <!-- ${}: 파라미터가 그대로 들어옴(컬럼명으로 쓸 수도있음) -->
+    <!-- #{}: String으로 들어옴, ''가 자동으로 씌워짐 -->
+    <insert id="write" parameterType="hashmap">
+    	INSERT INTO mvc_board ( bid, bname, btitle, bcontent, bhit ) 
+    		VALUES ( mvc_board_seq.NEXTVAL, #{bname}, #{btitle}, #{bcontent}, 0 )
+    </insert>
+    
+    <update id="modify" parameterType="hashmap">
+    	UPDATE mvc_board 
+    		SET bname = #{bname}, btitle = #{btitle}, bcontent = #{bcontent} 
+    		WHERE bid = #{bid}
+    </update>
+    
+    <update id="delete" parameterType="hashmap">
+    	DELETE FROM mvc_board WHERE bid = #{bid}
+    </update>
+    
+</mapper>

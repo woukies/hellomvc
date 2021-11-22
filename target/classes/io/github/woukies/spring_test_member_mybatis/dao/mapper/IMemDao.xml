@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.github.woukies.spring_test_member_mybatis.dao.IMemDao">
+	<resultMap type="io.github.woukies.spring_test_member_mybatis.dto.MemDto" id="loginInfo">
+		<!-- 변수명과 컬렁명이 다를 경우 여기서 매치 시켜줌 -->
+		<result property="mem_pwd" column="mem_pwd"/>
+		<result property="mem_uid" column="mem_uid"/>
+		<result property="mem_name" column="mem_name"/>
+	</resultMap>
+
+	<!-- resultType, resultMap 확인 -->
+    <select id="doLogin" resultMap="loginInfo">
+    	SELECT mem_pwd FROM mvc_member WHERE mem_uid = #{param1}
+    </select>
+    
+    <insert id="register">
+    	INSERT INTO mvc_member ( mem_uid, mem_pwd, mem_name ) VALUES ( #{param1}, #{param2}, #{param3} )
+    </insert>
+    
+</mapper>
