@@ -1,4 +1,4 @@
-package io.github.woukies.spring_test_item_mybatis;
+package io.github.woukies.spring_test_item_mybatis.controller;
 
 import java.io.UnsupportedEncodingException;
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.github.woukies.spring_test_item_mybatis_std.dao.IItemDao">
+
+    <select id="list" parameterType="hashmap" resultType="io.github.woukies.spring_test_item_mybatis_std.dto.ItemDto">
+    	SELECT name, price, description FROM item
+    </select>
+    
+    <insert id="write" parameterType="hashmap">
+    	INSERT INTO item ( name, price, description ) VALUES ( #{name}, #{price}, #{description} )
+    </insert>
+    
+</mapper>
