@@ -46,5 +46,20 @@
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
 	</beans:bean>
 	
+	
+	<!-- dao 설정 -->
+	<beans:bean name="dao" class="io.github.woukies.spring_tran.dao.TicketDao">
+		<beans:property name="template" ref="template"></beans:property>
+	</beans:bean>
+	
+	<beans:bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+	</beans:bean>
+	
+	<beans:bean name="dao2" class="io.github.woukies.spring_tran_apply.dao.TicketDao">
+		<beans:property name="template" ref="template"></beans:property>
+		<beans:property name="transactionManager" ref="transactionManager"></beans:property>
+	</beans:bean>
+	
 	<context:component-scan base-package="io.github.woukies" />
 </beans:beans>
